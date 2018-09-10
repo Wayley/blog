@@ -1,8 +1,14 @@
-const User = require('../lib/mongo').User
+const User = require('../lib/mongo').User;
 
 module.exports = {
   // 注册用户
   create(user) {
-    return User.create(user).exec()
+    return User.create(user).exec();
+  },
+  // 通过用户名获取用户信息
+  getUserByName(name) {
+    return User.findOne({ name })
+      .addCreatedAt()
+      .exec();
   }
-}
+};
